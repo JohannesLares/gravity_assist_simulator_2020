@@ -1,15 +1,23 @@
-# Reitinhaku avaruudessa projekti
+# Luolageneraattori määrittelydokumentti
 
-Omassa aurinkokunnassamme on monia eri taivaankappaleita, ja projektin ideana on toteuttaa algoritmi, jolla etsitään mahdollisimman hyvä reitti planeetalta A planeetalle B. Tässä on otettava huomioon mm. mahdolliset painovoimalinkoukset, planeettojen sijainnit ja lähtevän raketin massa.
+### Yleistä
 
-Tavoittena on tehdä siis simulaattorin kaltainen algoritmi, joka joko graafisen käyttöliittymän tai tekstikäyttöliittymän avulla kertoo käyttäjälle, mikä on paras tapa laukaista raketti paikasta A
+Ohjelman tehtävänä on generoida rogue tyylisiä luolastoja. Luolastoon liittyy huoneita ja käytäviä huoneiden välissä. Luolastoon voi liittyä myös tasoja. 
 
-Ohjelma tulee saamaan syötteenä raketin perustiedot, kuten laukaisupaikka, massa ja "delta-V". 
+Ohjelma siis luo pelialueen, joka näytetään käyttäjälle tekstimuotoisena pelinä. Käyttäjä ei kuitenkaan näe koko pelialuetta kerralla, vaan joutuu itse etsimään huoneita ja reittejä huoneiden välille.
 
-Syötteenä voidaan mahdollisesti myös ottaa muokattu aurinkokunta, jossa joka ikinen taivaankappale määritellään erikseen.
+Ohjelma voi myös mahdollisesti luoda luolastoon erilaisia vihollisia. Tämä ei kuitenkaan ns. prio1.
 
-### Aikavaativuus
+### Kieli
 
-Tavoitteena on toteuttaa projekti O(n logn), vaikkakin todenäköisempi aikavaativuus on O(n^2).
+Ohjelma tullaan toteuttamaan Java-ohjelmointikielellä ja koodataan englanniksi.
 
-  
+### Syötteet
+
+Alkuun ohjelma saa syötteenä käyttäjältä pelialueen koon, johon kaikkien huoneiden ja käytävien on mahduttava. Koko annetaan leveytenä ja korkeutena. Tämän jälkeen pelaaja pääsee peliin, jossa liikutaan joko nuolinäppäimin tai WASD-näppäimin. Alkuun on myös mahdollista saada syötteenä huoneiden määrä, mutta tämäkään ei prio1.
+
+### Algoritmit ja tietorakenteet
+
+Pääalgoritmi, on luolaston generointi. Mutta myöskin huoneiden generoimiseen saatetaan joutua käyttämään jotain algoritimia. Luolasto tullaan luomaan kaksiulotteisella taulukolla joko merkkipohjaisesti tai objektein. Luolaston generointialgoritmin tulisi toimia O(n) ajassa, jossa n on luolaston koko, sillä algoritmin pitäisi käydä taulukon jokaisessa pisteessä vain kerran ja päättää, mitä siihen pisteeseen tulee ympäröivien pisteiden perusteella (huone, käytävä, seinä, ei mitään (tänne pelaaja ei pääse siis)). 
+
+Tilavaativuuden tulisi olla n, jossa n on yksittäisen taulukkopisteen koko.
