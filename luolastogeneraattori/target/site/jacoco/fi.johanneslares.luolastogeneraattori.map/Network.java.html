@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Network.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">luolastogeneraattori</a> &gt; <a href="index.source.html" class="el_package">fi.johanneslares.luolastogeneraattori.map</a> &gt; <span class="el_source">Network.java</span></div><h1>Network.java</h1><pre class="source lang-java linenums">/**
+ * This is the map handler.
+ * The cave is two dimensional array of tiles
+ * Main point is to keep the map updated, when Leaf generates it.
+ */
+
+package fi.johanneslares.luolastogeneraattori.map;
+
+public class Network {
+	
+	Tile map[][];
+	
+	/**
+	 * 
+	 * @param height height of the cave
+	 * @param width Width of the cave
+	 */
+<span class="fc" id="L18">	public Network(int height, int width) {</span>
+<span class="fc" id="L19">		map = new Tile[width][height];</span>
+<span class="fc" id="L20">	}</span>
+	//x + w, y + h
+	public void updateMap(Leaf l) {
+<span class="fc bfc" id="L23" title="All 2 branches covered.">		for (int i = l.x + l.roomX; i &lt; l.x + l.roomX + l.roomW; i++) {</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">			for (int j = l.y + l.roomY; j &lt; l.y + l.roomY+l.roomH; j++) {</span>
+<span class="fc" id="L25">					map[i][j] = new Tile(TileType.ROOM);</span>
+			}
+		}
+<span class="fc" id="L28">	}</span>
+	
+	/**
+	 * Right now only for debugging purposes. Not working
+	 */
+	public void printMap() {
+<span class="nc bnc" id="L34" title="All 2 branches missed.">		for (int i = 0; i &lt; map.length; i++) {</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">			for (int j = 0; j &lt; map[i].length; j++) {</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">				if(map[i][j] == null) map[i][j] = new Tile(TileType.EMPTY);</span>
+<span class="nc" id="L37">				System.out.print(map[i][j].toString());</span>
+			}
+<span class="nc" id="L39">			System.out.println();</span>
+		}
+<span class="nc" id="L41">	}</span>
+	
+	public Tile[][] getMap() {
+<span class="fc" id="L44">		return this.map;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

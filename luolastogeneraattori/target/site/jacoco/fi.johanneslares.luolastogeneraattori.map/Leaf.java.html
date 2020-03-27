@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Leaf.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">luolastogeneraattori</a> &gt; <a href="index.source.html" class="el_package">fi.johanneslares.luolastogeneraattori.map</a> &gt; <span class="el_source">Leaf.java</span></div><h1>Leaf.java</h1><pre class="source lang-java linenums">package fi.johanneslares.luolastogeneraattori.map;
+import java.lang.Math;
+
+public class Leaf {
+<span class="fc" id="L5">	private int min_size = 10;</span>
+	public int x, y, width, height;
+	public int roomW, roomH, roomX, roomY;
+	public Leaf left;
+	public Leaf right;
+	
+<span class="fc" id="L11">	public Leaf(int x, int y, int width, int height) {</span>
+<span class="fc" id="L12">		this.x = x;</span>
+<span class="fc" id="L13">		this.y = y;</span>
+<span class="fc" id="L14">		this.width = width;</span>
+<span class="fc" id="L15">		this.height = height;</span>
+<span class="fc" id="L16">	}</span>
+	
+	public boolean split() {
+<span class="pc bpc" id="L19" title="2 of 4 branches missed.">		if (left != null || right != null) {</span>
+<span class="nc" id="L20">			return false;</span>
+		}
+<span class="fc bfc" id="L22" title="All 2 branches covered.">		boolean splitHorizontally = Math.random() &gt; 0.5;</span>
+<span class="fc bfc" id="L23" title="All 4 branches covered.">		if(width &gt; height &amp;&amp; width / height &gt;= 1.25) {</span>
+<span class="fc" id="L24">			splitHorizontally = false;</span>
+<span class="fc bfc" id="L25" title="All 4 branches covered.">		} else if (height &gt; width &amp;&amp; height / width &gt;= 1.25) {</span>
+<span class="fc" id="L26">			splitHorizontally = true;</span>
+		}
+<span class="fc bfc" id="L28" title="All 2 branches covered.">		int max_size = (splitHorizontally ? height : width) - min_size;</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">		if (max_size &lt;= min_size) return false;</span>
+<span class="fc" id="L30">		int range = max_size-min_size + 1;</span>
+<span class="fc" id="L31">		int split = (int)(Math.random() * range)+min_size;</span>
+		
+<span class="fc bfc" id="L33" title="All 2 branches covered.">		if(splitHorizontally) {</span>
+<span class="fc" id="L34">			left = new Leaf(x,y,width,split);</span>
+<span class="fc" id="L35">			right = new Leaf(x,y+split, width, height-split);</span>
+		} else {
+<span class="fc" id="L37">			left = new Leaf(x,y,split,height);</span>
+<span class="fc" id="L38">			right = new Leaf(x+split,y,width-split,height);</span>
+		}
+		
+<span class="fc" id="L41">		return true;</span>
+	}
+	
+	public void createRoom() {
+<span class="pc bpc" id="L45" title="1 of 4 branches missed.">		if (left != null || right != null) {</span>
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">			if (left != null) {</span>
+<span class="fc" id="L47">				left.createRoom();</span>
+			}
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">			if (right != null) {</span>
+<span class="fc" id="L50">				right.createRoom();</span>
+			}
+		} else {
+<span class="fc" id="L53">			int min_room_size = 3;</span>
+<span class="fc" id="L54">			int rangeW = width-min_room_size + 1;</span>
+<span class="fc" id="L55">			int rangeH = height-min_room_size+1;</span>
+<span class="fc" id="L56">			roomW = (int)(Math.random() * rangeW)+min_room_size;</span>
+<span class="fc" id="L57">			roomH = (int)(Math.random() * rangeH)+min_room_size;</span>
+<span class="fc" id="L58">			roomX = (int)(Math.random() * (width-roomW));</span>
+<span class="fc" id="L59">			roomY = (int)(Math.random() * (height-roomH));</span>
+		}
+<span class="fc" id="L61">	}</span>
+	
+	public String toString() {
+<span class="nc" id="L64">		return this.x + &quot; &quot; + this.y + &quot; | &quot; + this.width + &quot; &quot; + this.height + &quot; | &quot; + roomW + &quot; &quot; + roomH + &quot; | &quot; + roomX + &quot; &quot; + roomY;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
