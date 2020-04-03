@@ -13,3 +13,5 @@ Itse perusidean luolastogeneraattoriohjelmasta puuttuu siis enää käytävien g
 Koodissa on myös sellainen ongelma tällä hetkellä, että akselit ovat väärinpäin. Tästä seuraa, että jos koodissa on leveys, on se oikeassti korkeus ym. Tämä on kuitenkin aika nopea fixata, muuttaa vaan metodien ja muuttujien nimiä.
 
 Ja siis ideana varmaan voisi reitinhakualgolle olla, että valitaan jostain huoneesta lähtöruutu ja jonnekin huoneeseen maaliruutu, ja tämä väli mahdollisimman tehokkaasti. Toinen vaihtoehto on tosiaan pelattava peli, johon voisi lisätä jotain vihollisia simppelillä AI:lla.
+
+Aikaa tällä viikolla kului noin 8 tuntia
