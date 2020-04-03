@@ -25,15 +25,17 @@ public class App {
 		
 		System.out.println("Tervetuloa luolastogeneen :)");
 		System.out.println("Syötä luolaston leveys");
-		int width = Integer.parseInt(scanner.next());
+		int width = Integer.parseInt(scanner.nextLine());
 		System.out.println("Syötä luolaston korkeus");
-		int height = Integer.parseInt(scanner.next());
-		long start= System.currentTimeMillis();
+		int height = Integer.parseInt(scanner.nextLine());
+		int min_size = 30;
+		int min_room_size = 10;
+		int max_leaf_size = 50;
+		long start = System.currentTimeMillis();
 		network = new Network(height, width);
 		//network.getMap();
-		int max_leaf_size = 5;
 		List<Leaf> leafs = new ArrayList<Leaf>();
-		Leaf root = new Leaf(0,0,width, height);
+		Leaf root = new Leaf(0,0,width, height, min_size, min_room_size);
 		leafs.add(root);
 		boolean did_split = true;
 		while (did_split) {
@@ -56,6 +58,8 @@ public class App {
 			network.updateMap(l);
 			//System.out.println(l.toString());
 		}
+		
+		network.createPaths();
 		long end = System.currentTimeMillis();
 		network.printMap();
 		System.out.println("Aikaa: " + (end-start));

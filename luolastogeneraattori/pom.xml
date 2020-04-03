@@ -18,6 +18,21 @@
   <build>
 	<plugins>
 		<plugin>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-jar-plugin</artifactId>
+		    <configuration>
+		        <archive>
+		            <manifest>
+		                <addClasspath>true</addClasspath>
+		                <classpathPrefix>libs/</classpathPrefix>
+		                <mainClass>
+		                    fi.johanneslares.luolastogeneraattori.App
+		                </mainClass>
+		            </manifest>
+		        </archive>
+		    </configuration>
+		</plugin>
+		<plugin>
 	          <groupId>org.jacoco</groupId>
 	          <artifactId>jacoco-maven-plugin</artifactId>
 	          <version>0.8.2</version>

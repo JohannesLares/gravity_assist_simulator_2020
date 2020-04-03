@@ -2,17 +2,21 @@ package fi.johanneslares.luolastogeneraattori.map;
 import java.lang.Math;
 
 public class Leaf {
-	private int min_size = 10;
+	private int min_size;
+	private int min_room_size;
 	public int x, y, width, height;
 	public int roomW, roomH, roomX, roomY;
+	public Room room;
 	public Leaf left;
 	public Leaf right;
 	
-	public Leaf(int x, int y, int width, int height) {
+	public Leaf(int x, int y, int width, int height, int min_size, int min_room_size) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		this.min_size = min_size;
+		this.min_room_size = min_room_size;
 	}
 	
 	public boolean split() {
@@ -31,11 +35,11 @@ public class Leaf {
 		int split = (int)(Math.random() * range)+min_size;
 		
 		if(splitHorizontally) {
-			left = new Leaf(x,y,width,split);
-			right = new Leaf(x,y+split, width, height-split);
+			left = new Leaf(x,y,width,split, min_size, min_room_size);
+			right = new Leaf(x,y+split, width, height-split, min_size, min_room_size);
 		} else {
-			left = new Leaf(x,y,split,height);
-			right = new Leaf(x+split,y,width-split,height);
+			left = new Leaf(x,y,split,height, min_size, min_room_size);
+			right = new Leaf(x+split,y,width-split,height, min_size, min_room_size);
 		}
 		
 		return true;
@@ -50,15 +54,43 @@ public class Leaf {
 				right.createRoom();
 			}
 		} else {
-			int min_room_size = 3;
 			int rangeW = width-min_room_size + 1;
 			int rangeH = height-min_room_size+1;
 			roomW = (int)(Math.random() * rangeW)+min_room_size;
 			roomH = (int)(Math.random() * rangeH)+min_room_size;
 			roomX = (int)(Math.random() * (width-roomW));
 			roomY = (int)(Math.random() * (height-roomH));
+			room = new Room(roomW, roomH, roomX, roomY);
+			room.setMapPosition(roomX + x, roomY + y);
+			System.out.println("Roompos: " + room.getMapX() + ", " + room.getMapY() + " Room dimensions: " + room.getWidth() + ", " + room.getHeight());
 		}
 	}
+	
+	public Room getRoom() {
+		if (room != null) {
+			return room;
+		} else {
+			Room leftRoom = null;
+			Room rightRoom = null;
+			if (left != null) {
+				leftRoom = left.getRoom();
+			}
+			if (right != null) {
+				rightRoom = right.getRoom();
+			}
+			if (leftRoom == null && rightRoom == null) {
+				return null;
+			} else if (leftRoom == null) {
+				return rightRoom;
+			} else if (rightRoom == null) {
+				return leftRoom;
+			} else {
+				return rightRoom;
+			}
+		}
+	}
+	
+	
 	
 	public String toString() {
 		return this.x + " " + this.y + " | " + this.width + " " + this.height + " | " + roomW + " " + roomH + " | " + roomX + " " + roomY;

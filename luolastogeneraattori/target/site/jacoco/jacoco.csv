@@ -1,6 +1,0 @@
-GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-luolastogeneraattori,fi.johanneslares.luolastogeneraattori.map,TileType,0,70,0,0,0,10,0,3,0,3
-luolastogeneraattori,fi.johanneslares.luolastogeneraattori.map,Leaf,45,237,5,23,2,36,6,12,1,3
-luolastogeneraattori,fi.johanneslares.luolastogeneraattori.map,Tile,0,23,0,0,0,10,0,5,0,5
-luolastogeneraattori,fi.johanneslares.luolastogeneraattori.map,Network,49,58,6,4,6,8,4,5,1,3
-luolastogeneraattori,fi.johanneslares.luolastogeneraattori,App,134,0,16,0,32,0,11,0,3,0

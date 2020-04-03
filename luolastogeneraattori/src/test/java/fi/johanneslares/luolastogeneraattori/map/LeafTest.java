@@ -18,7 +18,7 @@ public class LeafTest {
 	public void setUp() throws Exception {
 		int max_leaf_size = 5;
 		leafs = new ArrayList<Leaf>();
-		root = new Leaf(0,0,100, 100);
+		root = new Leaf(0,0,100, 100, 7, 5);
 		leafs.add(root);
 		boolean did_split = true;
 		while (did_split) {
@@ -57,8 +57,8 @@ public class LeafTest {
 	public void roomSizeIsCorrect() {
 		root.createRoom();
 		for (Leaf l : leafs) {
-			if (l.roomW > l.width) fail("Room is wider than the parent leaf");
-			if (l.roomH > l.height) fail("Room is taller than the parent leaf");
+			if (l.getRoom().getWidth() > l.width) fail("Room is wider than the parent leaf: " + l.getRoom().getWidth() + ", " + l.width);
+			if (l.getRoom().getHeight() > l.height) fail("Room is taller than the parent leaf: " + l.getRoom().getHeight() + ", " + l.height);
 		}
 	}
 

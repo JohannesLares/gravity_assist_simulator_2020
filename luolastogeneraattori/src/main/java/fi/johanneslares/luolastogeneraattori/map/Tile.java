@@ -7,6 +7,7 @@ package fi.johanneslares.luolastogeneraattori.map;
 public class Tile {
 	
 	private TileType type;
+	private String color = "";
 	
 	/**
 	 * Create tile with specific type
@@ -44,5 +45,10 @@ public class Tile {
 	 */
 	public String toString() {
 		return this.type.getMark();
+	}
+	
+	public String getColor() { return this.color; }
+	public void setColor(String c) {
+		this.color = c;
 	}
 }

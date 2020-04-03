@@ -18,7 +18,8 @@ public class NetworkTest {
 	@Test
 	public void mapUpdateWorks() {
 		Network n = new Network(10, 10);
-		l = new Leaf(2,2,2,2);
+		l = new Leaf(2,2,2,2, 7, 5);
+		l.createRoom();
 		l.roomH = 2;
 		l.roomW = 2;
 		l.roomX = 0;
