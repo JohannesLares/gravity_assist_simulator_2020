@@ -10,6 +10,8 @@
 
 [Viikon 4 raportti](./dokumentaatio/raportti4.md)
 
+[Viikon 5 raportti](./dokumentaatio/raportti5.md)
+
 ### Muut dokumentit
 [Vaatimusmäärittely](./dokumentaatio/maarittely.md)
 

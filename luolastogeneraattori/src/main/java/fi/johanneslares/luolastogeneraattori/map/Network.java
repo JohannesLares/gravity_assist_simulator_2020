@@ -63,14 +63,35 @@ public class Network {
 				System.out.println("Poistettu");
 				continue;
 			}
-			Room r = overlapAndCreatePath(rooms.get(1), rooms.get(i+1));
+			Room r = overlapAndCreatePath(rooms.get(i), rooms.get(i+1));
 			if (r == null) {
-				System.out.println("No overlap");
+				System.out.println("No Straight route, create angled one");
+				AngledPathPositions angledPos = createAngledPath(rooms.get(i), rooms.get(i+1));
+				if(angledPos == null) continue;
+				for(int a = angledPos.getStartX(); a < angledPos.getStartYcoordX(); a++) {
+					if(map[a][angledPos.getStartXcoordY()] == null) {
+						map[a][angledPos.getStartXcoordY()] = new Tile(TileType.PATH);
+					}
+				}
+				for(int a = angledPos.getStartXcoordY(); a < angledPos.getStartY(); a++) {
+					if(map[angledPos.getStartYcoordX()][a] == null) {
+						map[angledPos.getStartYcoordX()][a] = new Tile(TileType.PATH);
+					}
+				}
 				continue;
-			} else {
+			} else if (r.getWidth() == 1) {
 				System.out.println("Numerot: " + r.getMapX() + " " + r.getWidth() + " " + r.getMapY());
 				for (int a = r.getMapY(); a < r.getHeight() + r.getMapY(); a++) {
-					map[r.getMapX()][a] = new Tile(TileType.PATH);
+					if(map[r.getMapX()][a] == null) {
+						map[r.getMapX()][a] = new Tile(TileType.PATH);
+					}
+				}
+			} else {
+				System.out.println("Vertikaali");
+				for (int a = r.getMapX(); a < r.getWidth() + r.getMapX(); a++) {
+					if(map[a][r.getMapY()] == null) {
+						map[a][r.getMapY()] = new Tile(TileType.PATH);
+					}
 				}
 			}
 			
@@ -79,25 +100,49 @@ public class Network {
 		System.out.println(rooms.size());
 	}
 	
+	private AngledPathPositions createAngledPath(Room r1, Room r2) {
+		if (r1.getMapY() + r1.getHeight() <= r2.getMapY() + r2.getHeight() && r1.getMapX() + r1.getWidth() <= r2.getMapX() + r2.getWidth()) {
+			int x_coord_y = ThreadLocalRandom.current().nextInt(r1.getMapY(), r1.getMapY()+r1.getHeight()-1);
+			int x_coord = ThreadLocalRandom.current().nextInt(r1.getMapY(), r1.getMapY()+r1.getHeight());
+			int y_coord_x = r2.getMapX();
+			int y_coord = ThreadLocalRandom.current().nextInt(r2.getMapY(), r2.getMapY()+r2.getHeight());
+			return new AngledPathPositions(x_coord, y_coord, x_coord_y, y_coord_x, "tl");
+		}
+		if (r2.getMapY() + r2.getHeight() <= r1.getMapY() + r1.getHeight() && r2.getMapX() + r2.getWidth() <= r1.getMapX() + r1.getWidth()) {
+			int x_coord_y = ThreadLocalRandom.current().nextInt(r2.getMapY(), r2.getMapY()+r2.getHeight()-1);
+			int x_coord = ThreadLocalRandom.current().nextInt(r2.getMapY(), r2.getMapY()+r2.getHeight());
+			int y_coord_x = r1.getMapX();
+			int y_coord = ThreadLocalRandom.current().nextInt(r1.getMapY(), r1.getMapY()+r1.getHeight());
+			return new AngledPathPositions(x_coord, y_coord, x_coord_y, y_coord_x, "bl");
+		}
+		return null;
+	}
+	
 	private Room overlapAndCreatePath(Room r1, Room r2) {
-		if(r2.getMapX() <= r1.getMapX() + r1.getWidth() && r2.getMapX() >= r1.getMapX() && r1.getMapY() + r1.getHeight() < r2.getMapY()) {
+		if(r2.getMapX() < r1.getMapX() + r1.getWidth() && r2.getMapX() >= r1.getMapX() && r1.getMapY() + r1.getHeight() < r2.getMapY()) {
 			int start = ThreadLocalRandom.current().nextInt(r2.getMapX(),r1.getMapX() + r1.getWidth());
 			Room r = new Room(1, r2.getMapY()-(r1.getMapY()+r1.getHeight()), 0,0);
 			r.setMapPosition(start, r1.getMapY()+r1.getHeight());
-			System.out.println(r1.getMapX() + " " + r1.getHeight() + " " + r1.getMapY() + " " + r1.getWidth() + " |"
-					+ " " + r2.getMapX() + " " + r2.getHeight() + " " + r2.getMapY() + " " + r2.getWidth() + " |"
-							+ " " + r.getMapX() + " " + r.getHeight() + " " + r.getMapY() + " " + r.getWidth());
 			return r;
 		}
-//		if(r1.getMapX() <= r2.getMapX() + r2.getHeight() && r1.getMapX() >= r2.getMapX()) {
-//			return "vertical";
-//		}
-//		if(r2.getMapY() <= r1.getMapY() + r1.getWidth() && r2.getMapY() >= r1.getMapY()) {
-//			return "horizontal";
-//		}
-//		if(r1.getMapY() <= r2.getMapY() + r2.getWidth() && r1.getMapY() >= r2.getMapY()) {
-//			return "horizontal";
-//		}
+		if(r1.getMapX() < r2.getMapX() + r2.getWidth() && r1.getMapX() >= r2.getMapX() && r2.getMapY() + r2.getHeight() < r1.getMapY()) {
+			int start = ThreadLocalRandom.current().nextInt(r1.getMapX(),r2.getMapX()+r2.getWidth());
+			Room r = new Room(1,r1.getMapY()-(r2.getMapY()+r2.getHeight()), 0,0);
+			r.setMapPosition(start, r2.getMapY()+r2.getHeight());
+			return r;
+		}
+		if(r2.getMapY() < r1.getMapY() + r1.getHeight() && r2.getMapY() >= r1.getMapY() && r1.getMapX() + r1.getWidth() < r2.getMapX()) {
+			int start = ThreadLocalRandom.current().nextInt(r1.getMapY(), r1.getMapY()+r1.getHeight());
+			Room r = new Room(r2.getMapX()-(r1.getMapX()+r1.getWidth()),1,0,0);
+			r.setMapPosition(r1.getMapX()+r1.getWidth(), start);
+			return r;
+		}
+		if(r1.getMapY() < r2.getMapY() + r2.getHeight() && r1.getMapY() >= r2.getMapY() && r2.getMapX() + r2.getWidth() < r1.getMapX()) {
+			int start = ThreadLocalRandom.current().nextInt(r2.getMapY(), r2.getMapY()+r2.getHeight());
+			Room r = new Room(r1.getMapX()-(r2.getMapX()+r2.getWidth()),1,0,0);
+			r.setMapPosition(r2.getMapX()+r2.getWidth(), start);
+			return r;
+		}
 		return null;
 	}
 	
