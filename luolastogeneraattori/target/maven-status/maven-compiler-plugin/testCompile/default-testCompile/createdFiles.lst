@@ -1,4 +1,7 @@
+fi\johanneslares\luolastogeneraattori\PerformanceTest.class
 fi\johanneslares\luolastogeneraattori\map\TileTest.class
 fi\johanneslares\luolastogeneraattori\map\LeafTest.class
+fi\johanneslares\luolastogeneraattori\datastructures\ArrayTest.class
+fi\johanneslares\luolastogeneraattori\map\AngledPathPositionsTest.class
 fi\johanneslares\luolastogeneraattori\map\NetworkTest.class
 fi\johanneslares\luolastogeneraattori\AppTest.class

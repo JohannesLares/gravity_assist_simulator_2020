@@ -22,12 +22,21 @@ public class App {
 	 */
 	
 	public static void main(String[] args) {
-		
 		System.out.println("Tervetuloa luolastogeneen :)");
 		System.out.println("Syötä luolaston leveys");
 		int width = Integer.parseInt(scanner.nextLine());
 		System.out.println("Syötä luolaston korkeus");
 		int height = Integer.parseInt(scanner.nextLine());
+		run(height, width);
+		network.printMap();
+	}
+	
+	/**
+	 * Create the cave method
+	 * @param height
+	 * @param width
+	 */
+	public static void run(int height, int width) {
 		int min_size = 30;
 		int min_room_size = 10;
 		int max_leaf_size = 50;
@@ -61,7 +70,6 @@ public class App {
 		
 		network.createPaths();
 		long end = System.currentTimeMillis();
-		network.printMap();
 		System.out.println("Aikaa: " + (end-start));
 	}
 

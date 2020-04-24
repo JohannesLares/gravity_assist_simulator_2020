@@ -1,5 +1,10 @@
 package fi.johanneslares.luolastogeneraattori.map;
 
+/**
+ * Room class
+ * @author Johannes Lares
+ *
+ */
 public class Room {
 	private int width, height, x, y, mapX, mapY;
 	private boolean connected = false;
@@ -18,6 +23,11 @@ public class Room {
 	public int getMapX() { return this.mapX; }
 	public int getMapY() { return this.mapY; }
 	
+	/**
+	 * Set map position (based on the main ascii char map)
+	 * @param x X coordinate
+	 * @param y Y coordinate
+	 */
 	public void setMapPosition(int x, int y) {
 		this.mapX = x;
 		this.mapY = y;

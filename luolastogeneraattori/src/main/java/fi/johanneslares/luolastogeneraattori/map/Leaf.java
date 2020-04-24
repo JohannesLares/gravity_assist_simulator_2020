@@ -1,6 +1,11 @@
 package fi.johanneslares.luolastogeneraattori.map;
 import java.lang.Math;
 
+/**
+ * Class for creating leafs
+ * @author Johannes Lares
+ *
+ */
 public class Leaf {
 	private int min_size;
 	private int min_room_size;
@@ -19,6 +24,10 @@ public class Leaf {
 		this.min_room_size = min_room_size;
 	}
 	
+	/**
+	 * Split leaf in two child leafs, if width and height of new child is bigger than min_size 
+	 * @return if leaf has been split
+	 */
 	public boolean split() {
 		if (left != null || right != null) {
 			return false;
@@ -45,6 +54,9 @@ public class Leaf {
 		return true;
 	}
 	
+	/**
+	 * Create room into leaf. I f leaf has child leafs, create room to child leafs.
+	 */
 	public void createRoom() {
 		if (left != null || right != null) {
 			if (left != null) {
@@ -62,10 +74,14 @@ public class Leaf {
 			roomY = (int)(Math.random() * (height-roomH));
 			room = new Room(roomW, roomH, roomX, roomY);
 			room.setMapPosition(roomX + x, roomY + y);
-			System.out.println("Roompos: " + room.getMapX() + ", " + room.getMapY() + " Room dimensions: " + room.getWidth() + ", " + room.getHeight());
+			//System.out.println("Roompos: " + room.getMapX() + ", " + room.getMapY() + " Room dimensions: " + room.getWidth() + ", " + room.getHeight());
 		}
 	}
 	
+	/**
+	 * Get leafs room 
+	 * @return Room
+	 */
 	public Room getRoom() {
 		if (room != null) {
 			return room;
@@ -91,7 +107,9 @@ public class Leaf {
 	}
 	
 	
-	
+	/**
+	 * Return room data as debuggable string
+	 */
 	public String toString() {
 		return this.x + " " + this.y + " | " + this.width + " " + this.height + " | " + roomW + " " + roomH + " | " + roomX + " " + roomY;
 	}

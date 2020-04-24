@@ -1,5 +1,8 @@
-fi\johanneslares\luolastogeneraattori\map\Tile.class
+fi\johanneslares\luolastogeneraattori\map\AngledPathPositions.class
+fi\johanneslares\luolastogeneraattori\datastructures\Array.class
 fi\johanneslares\luolastogeneraattori\App.class
-fi\johanneslares\luolastogeneraattori\map\Network.class
 fi\johanneslares\luolastogeneraattori\map\TileType.class
 fi\johanneslares\luolastogeneraattori\map\Leaf.class
+fi\johanneslares\luolastogeneraattori\map\Room.class
+fi\johanneslares\luolastogeneraattori\map\Tile.class
+fi\johanneslares\luolastogeneraattori\map\Network.class
