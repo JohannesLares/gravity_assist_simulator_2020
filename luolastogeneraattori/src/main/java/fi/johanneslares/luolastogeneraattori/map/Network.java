@@ -9,10 +9,12 @@ package fi.johanneslares.luolastogeneraattori.map;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+import fi.johanneslares.luolastogeneraattori.datastructures.Array;
+
 public class Network {
 	
 	Tile map[][];
-	List<Room> rooms = new ArrayList<Room>();
+	Array<Room> rooms = new Array<Room>();
 	
 	/**
 	 * 
@@ -60,13 +62,12 @@ public class Network {
 	 */
 	public void createPaths() {
 		//System.out.println(rooms.size());
-		for (int i = 0; i < rooms.size(); i++) {
+		int s = rooms.size();
+		for (int i = 0; i < s; i++) {
 			if (i + 1 == rooms.size()) {
 				continue;
 			}
 			if (rooms.get(i).getMapX() == rooms.get(i+1).getMapX() && rooms.get(i).getMapY() == rooms.get(i+1).getMapY()) {
-				rooms.remove(i+1);
-				//System.out.println("Poistettu");
 				continue;
 			}
 			Room r = overlapAndCreatePath(rooms.get(i), rooms.get(i+1));

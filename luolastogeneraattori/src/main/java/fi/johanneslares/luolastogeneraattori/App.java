@@ -5,6 +5,7 @@ package fi.johanneslares.luolastogeneraattori;
  * @version 0.1
  */
 
+import fi.johanneslares.luolastogeneraattori.datastructures.*;
 import java.util.*;
 
 import fi.johanneslares.luolastogeneraattori.map.*;
@@ -43,7 +44,7 @@ public class App {
 		long start = System.currentTimeMillis();
 		network = new Network(height, width);
 		//network.getMap();
-		List<Leaf> leafs = new ArrayList<Leaf>();
+		Array<Leaf> leafs = new Array<Leaf>();
 		Leaf root = new Leaf(0,0,width, height, min_size, min_room_size);
 		leafs.add(root);
 		boolean did_split = true;
@@ -63,7 +64,8 @@ public class App {
 			}
 		}
 		root.createRoom();
-		for (Leaf l : leafs) {
+		for (int i = 0; i < leafs.size(); i++) {
+			Leaf l = leafs.get(i);
 			network.updateMap(l);
 			//System.out.println(l.toString());
 		}

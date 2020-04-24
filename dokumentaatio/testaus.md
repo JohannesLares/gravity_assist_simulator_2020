@@ -19,6 +19,7 @@ koko | aika (ms)
 10000x1000|36
 10000x10000|3558
 
+Array testauksessa on käytetty 1000 alkion kokoista taulukkoa. Array aikavaativuus on add ja get operaatioissa O(1), mutta remove operaatiossa O(n), jossa n on listan pituus.
 ArrayList vastaavan tietorakenteen Array suorituskykytestit voi ajaa:
 
 ```mvn -Dtest=ArrayTest test```
