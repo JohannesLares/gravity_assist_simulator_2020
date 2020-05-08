@@ -8,12 +8,11 @@ public class AngledPathPositionsTest {
 
 	@Test
 	public void angledPathPositionsTest() {
-		AngledPathPositions p = new AngledPathPositions(3, 8, 1200, 80, "tl");
-		assertTrue(p.getStartX() == 3);
-		assertTrue(p.getStartY() == 8);
-		assertTrue(p.getStartXcoordY() == 1200);
-		assertTrue(p.getStartYcoordX() == 80);
-		assertTrue(p.getType().equals("tl"));
+		AngledPathPositions p = new AngledPathPositions(3, 8, 1200, 80);
+		assertTrue(p.getRoom1X() == 3);
+		assertTrue(p.getRoom1Y() == 8);
+		assertTrue(p.getRoom2X() == 1200);
+		assertTrue(p.getRoom2Y() == 80);
 	}
 
 }

@@ -1,7 +1,5 @@
 package fi.johanneslares.luolastogeneraattori.datastructures;
 
-import java.util.stream.IntStream;
-
 /**
  * Alternative datastructure for ArrayList
  * @author Johannes Lares
@@ -52,19 +50,31 @@ public class Array<T> {
 		list = tmp;
 	}
 	
+	/**
+	 * Get Array size
+	 * @return int size
+	 */
 	public int size() {
 		return this.size;
 	}
 	
+	/**
+	 * Remove element at the specific index
+	 * @param index index of element to be removed
+	 */
 	public void remove(int index) {
-		Object[] tmp = new Object[list.length];
-		for (int i = 0; i < list.length-1; i++) {
-			if(i >= index) {
-				tmp[i] = list[i+1];
-			} else {
-				tmp[i] = list[i];
-			}
+		int i = size - 1 - index;
+		if(i > 0) {
+			System.arraycopy(list, index+1, list, index, i);
 		}
-		list = tmp;
+		list[--size] = null;
+	}
+	
+	/**
+	 * If Array is empty or not
+	 * @return boolean is array empty
+	 */
+	public boolean isEmpty() {
+		return size == 0;
 	}
 }

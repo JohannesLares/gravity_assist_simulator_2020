@@ -12,7 +12,15 @@
 
 [Viikon 5 raportti](./dokumentaatio/raportti5.md)
 
+[Viikon 6 raportti](./dokumentaatio/raportti6.md)
+
+[Ennen loppupalautusta raportti](./dokumentaatio/loppu.md)
+
 ### Muut dokumentit
 [Vaatimusmäärittely](./dokumentaatio/maarittely.md)
 
 [Testausdokumentti](./dokumentaatio/testaus.md)
+
+[Toteutusdokumentti](./dokumentaatio/toteutus.md)
+
+[Käyttöohjeet](./dokumentaatio/ohjeet.md)

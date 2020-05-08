@@ -9,6 +9,9 @@ public enum TileType {
 	HORIZONTAL_WALL ("-"),
 	VERTICAL_WALL ("|"),
 	ROOM ("."),
+	START_POSITION ("0"),
+	END_POSITION ("$"),
+	ASTAR_PATH ("X"),
 	PATH ("#");
 	
 	private final String mark;

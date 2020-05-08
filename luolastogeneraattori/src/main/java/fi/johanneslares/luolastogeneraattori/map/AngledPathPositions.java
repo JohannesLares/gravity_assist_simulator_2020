@@ -5,11 +5,10 @@ package fi.johanneslares.luolastogeneraattori.map;
 
 public class AngledPathPositions {
 	
-	private int startX;
-	private int startY;
-	private int startXcoordY;
-	private int startYcoordX;
-	private String type;
+	private int room1_x;
+	private int room1_y;
+	private int room2_x;
+	private int room2_y;
 	
 	/**
 	 * Constructor
@@ -18,17 +17,15 @@ public class AngledPathPositions {
 	 * @param sXcY   startX Y coordinate
 	 * @param sYcX	 startY X coordinate
 	 */
-	public AngledPathPositions(int startX, int startY, int sXcY, int sYcX, String t) {
-		this.startX = startX;
-		this.startY = startY;
-		this.startXcoordY = sXcY;
-		this.startYcoordX = sYcX;
-		this.type = t;
+	public AngledPathPositions(int r1_x, int r1_y, int r2_x, int r2_y) {
+		this.room1_x = r1_x;
+		this.room1_y = r1_y;
+		this.room2_x = r2_x;
+		this.room2_y = r2_y;
 	}
 	
-	public int getStartX() { return this.startX; }
-	public int getStartY() { return this.startY; }
-	public int getStartXcoordY() { return this.startXcoordY; }
-	public int getStartYcoordX() { return this.startYcoordX; }
-	public String getType() { return this.type; }
+	public int getRoom1X() { return this.room1_x; }
+	public int getRoom1Y() { return this.room1_y; }
+	public int getRoom2X() { return this.room2_x; }
+	public int getRoom2Y() { return this.room2_y; }
 }

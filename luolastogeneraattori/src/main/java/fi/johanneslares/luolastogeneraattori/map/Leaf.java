@@ -1,5 +1,6 @@
 package fi.johanneslares.luolastogeneraattori.map;
-import java.lang.Math;
+
+import fi.johanneslares.luolastogeneraattori.datastructures.Random;
 
 /**
  * Class for creating leafs
@@ -32,7 +33,7 @@ public class Leaf {
 		if (left != null || right != null) {
 			return false;
 		}
-		boolean splitHorizontally = Math.random() > 0.5;
+		boolean splitHorizontally = Random.getRandom() > 0.5;
 		if(width > height && width / height >= 1.25) {
 			splitHorizontally = false;
 		} else if (height > width && height / width >= 1.25) {
@@ -41,7 +42,7 @@ public class Leaf {
 		int max_size = (splitHorizontally ? height : width) - min_size;
 		if (max_size <= min_size) return false;
 		int range = max_size-min_size + 1;
-		int split = (int)(Math.random() * range)+min_size;
+		int split = (int)(Random.getRandom() * range)+min_size;
 		
 		if(splitHorizontally) {
 			left = new Leaf(x,y,width,split, min_size, min_room_size);
@@ -55,7 +56,7 @@ public class Leaf {
 	}
 	
 	/**
-	 * Create room into leaf. I f leaf has child leafs, create room to child leafs.
+	 * Create room into leaf. If leaf has child leafs, create room to child leafs.
 	 */
 	public void createRoom() {
 		if (left != null || right != null) {
@@ -68,10 +69,10 @@ public class Leaf {
 		} else {
 			int rangeW = width-min_room_size + 1;
 			int rangeH = height-min_room_size+1;
-			roomW = (int)(Math.random() * rangeW)+min_room_size;
-			roomH = (int)(Math.random() * rangeH)+min_room_size;
-			roomX = (int)(Math.random() * (width-roomW));
-			roomY = (int)(Math.random() * (height-roomH));
+			roomW = (int)(Random.getRandom() * rangeW)+min_room_size;
+			roomH = (int)(Random.getRandom() * rangeH)+min_room_size;
+			roomX = (int)(Random.getRandom() * (width-roomW));
+			roomY = (int)(Random.getRandom() * (height-roomH));
 			room = new Room(roomW, roomH, roomX, roomY);
 			room.setMapPosition(roomX + x, roomY + y);
 			//System.out.println("Roompos: " + room.getMapX() + ", " + room.getMapY() + " Room dimensions: " + room.getWidth() + ", " + room.getHeight());
