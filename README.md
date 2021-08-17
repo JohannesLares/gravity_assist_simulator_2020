@@ -1,5 +1,13 @@
 # Cavegenerator
 
+This is a cave generator made in university of Helsinki on Tiralabra course. Main idea is to make random caves.
+
+## For usage with docker
+
+Run this file with `-it` flag. It is pretty nescessary. App will ask you couple of questions and print a cave.
+
+Documentation below is not for docker
+
 ### Raportit
 
 [Viikon 1 raportti](./dokumentaatio/raportti1.md)
